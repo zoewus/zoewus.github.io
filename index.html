@@ -59,7 +59,7 @@
     font-size: 16px;
   }
 
-  /* ---------- Photo upload area ---------- */
+  /* ---------- Photo ---------- */
   .photo-wrap {
     flex: 0 0 220px;
     display: flex;
@@ -85,29 +85,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .photo-placeholder {
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    color: #999;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .photo-hint {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #999;
-    text-align: center;
-    max-width: 220px;
-  }
-
-  .photo-hint code {
-    background: #f2f2f2;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 11px;
   }
 
   /* ---------- Links row ---------- */
@@ -184,14 +161,6 @@
     object-fit: contain;
   }
 
-  .research-image-placeholder {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #aaa;
-    text-align: center;
-    padding: 10px;
-  }
-
   .research-text {
     flex: 1 1 400px;
     min-width: 280px;
@@ -256,37 +225,42 @@
       </p>
 
       <p>
-        My research is focused on developing algorithmic techniques that enable principled
-        inference-time control over generative modeling. My research seeks to use the
-        theoretical arguments of advanced statistical inference techniques to create
-        empirically performant, principled algorithms with applications ranging across
-        robotics, protein generation, reasoning, and computer vision. A major challenge
-        now in generative AI research has been how we can steer the qualitative properties
-        of generated content, incorporate external control into the output, or correct for 
-        biases baked into the training data. Such aims find uses not only across
-        language and image generation, but also across protein generation &mdash; where
-        samples must maximize performance metrics (e.g. stability, affinity in proteins,
-        closeness to target structures) &mdash; and robotic manipulation &mdash; where
-        robotic policies must align with real-world constraints.
+        A central challenge in generative AI is steering what a model produces after
+        it's already trained &mdash; controlling the style and structure of its outputs,
+        incorporating external constraints, or correcting for biases baked into the
+        training data. My research develops algorithmic techniques for this kind of
+        inference-time control, grounded in the theoretical arguments of statistical
+        inference and built to be empirically performant.
+      </p>
+
+      <p>
+        These ideas show up differently across domains: in language and image
+        generation, they shape sample style and structure; in protein generation,
+        they push samples toward performance metrics like stability, affinity, and
+        closeness to a target structure; in robotic manipulation, they align policies
+        with real-world physical constraints. I'm also interested in extending this
+        framework to reasoning and computer vision, where similar questions of control
+        and correction arise in different forms.
       </p>
     </div>
 
-    <!-- ============ PHOTO UPLOAD AREA ============ -->
+    <!-- ============ PHOTO ============ -->
     <div class="photo-wrap">
       <div class="photo-frame">
         <img src="images/profile.jpg" alt="Zoe Wu">
       </div>
+    </div>
   </div>
 
   <!-- ============ LINKS ============ -->
   <div class="links-row">
-    <a href="mailto:you@example.com">Email</a>
+    <a href="mailto:zoewu@g.harvard.edu">Email</a>
     <span class="sep">/</span>
     <a href="#">Google Scholar</a>
     <span class="sep">/</span>
     <a href="#">Twitter</a>
     <span class="sep">/</span>
-    <a href="#">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/zoewuz/">LinkedIn</a>
   </div>
 
   <!-- ============ RECENT NEWS ============ -->
@@ -334,17 +308,24 @@
   <h2 class="section-title">Research</h2>
 
   <div class="research-entry">
+    <div class="research-image">
+      <img src="images/geometry-aware-ebm.png" alt="Geometry-Aware Energy-Based Image Modelling figure">
+    </div>
     <div class="research-text">
       <a class="title" href="#">Geometry-Aware Energy-Based Image Modelling</a>
       <div class="authors"><strong>Zoe Wu</strong></div>
       <div class="venue"><em>AAAI</em>, 2025 Workshop Paper</div>
       <div class="abstract">
-        Explores how ideas from statistical inference can create a geometry-aware image sampling process to improve the tradeoff between diversity and fidelity
+        Explores how ideas from statistical inference can create a geometry-aware image sampling process to improve the tradeoff between diversity and fidelity.
       </div>
     </div>
   </div>
 
-  <!-- Add more research entries by copying the .research-entry block above -->
+  <!--
+    To add another paper, copy the block above and update:
+      - images/your-figure.png  (place the file in the images/ folder)
+      - the title, authors, venue, and abstract text
+  -->
 
 </div>
 </body>

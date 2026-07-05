@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zoe Wu</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --link: #3a6fb0;
+    --news-date: #2f7d32;
+    --oral: #c0392b;
+    --border: #e3e3e3;
+    --news-bg: #fafafa;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- Header ---------- */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .header-text {
+    flex: 1 1 480px;
+    min-width: 280px;
+  }
+
+  h1.name {
+    font-size: 42px;
+    font-weight: 400;
+    margin: 0 0 24px 0;
+  }
+
+  .header-text p {
+    margin: 0 0 18px 0;
+    font-size: 16px;
+  }
+
+  /* ---------- Photo upload area ---------- */
+  .photo-wrap {
+    flex: 0 0 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .photo-frame {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f0f0f0;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-placeholder {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .photo-hint {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    max-width: 220px;
+  }
+
+  .photo-hint code {
+    background: #f2f2f2;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+
+  /* ---------- Links row ---------- */
+  .links-row {
+    text-align: center;
+    margin: 36px 0 8px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+  }
+
+  .links-row span.sep {
+    color: #999;
+    margin: 0 10px;
+  }
+
+  /* ---------- Section headings ---------- */
+  h2.section-title {
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 64px 0 20px;
+  }
+
+  /* ---------- Recent News ---------- */
+  .news-table {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--news-bg);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+  }
+
+  .news-row {
+    display: flex;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .news-row:last-child { border-bottom: none; }
+
+  .news-date {
+    flex: 0 0 130px;
+    color: var(--news-date);
+    font-weight: 700;
+  }
+
+  .news-content { flex: 1; }
+
+  /* ---------- Research ---------- */
+  .research-entry {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .research-image {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 160px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .research-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .research-image-placeholder {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .research-text {
+    flex: 1 1 400px;
+    min-width: 280px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+  }
+
+  .research-text .title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--link);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .research-text .authors {
+    margin-bottom: 2px;
+  }
+
+  .research-text .venue {
+    margin-bottom: 6px;
+    color: #444;
+  }
+
+  .research-text .oral-tag {
+    color: var(--oral);
+  }
+
+  .research-text .venue-links {
+    margin-bottom: 10px;
+  }
+
+  .research-text .venue-links a {
+    margin-right: 4px;
+  }
+
+  .research-text .abstract {
+    color: #333;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    .header { flex-direction: column-reverse; align-items: center; text-align: center; }
+    .header-text { text-align: left; }
+    h1.name { text-align: center; }
+    .news-row { flex-direction: column; gap: 4px; }
+    .news-date { flex: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============ HEADER ============ -->
+  <div class="header">
+    <div class="header-text">
+      <h1 class="name">Zoe Wu</h1>
+
+      <p>
+        Hi, I'm Zoe! I'm currently a Post-baccalaureate Researcher at the
+        <a href="#">Kempner Institute</a> at Harvard University.
+      </p>
+
+      <p>
+        My research is focused on developing algorithmic techniques that enable principled
+        inference-time control over generative modeling. My research seeks to use the
+        theoretical arguments of advanced statistical inference techniques to create
+        empirically performant, principled algorithms with applications ranging across
+        robotics, protein generation, reasoning, and computer vision. A major challenge
+        now in generative AI research has been how we can steer the qualitative properties
+        of generated content, such as the ability to control sample style and structure, or
+        incorporate external control into the output. Such aims find uses not only across
+        language and image generation, but also across protein generation &mdash; where
+        samples must maximize performance metrics (e.g. stability, affinity in proteins,
+        closeness to target structures) &mdash; and robotic manipulation &mdash; where
+        robotic policies must align with real-world constraints. Inference-time algorithms
+        become particularly pertinent in fairness-constrained generation, enabling us to
+        not only steer generation towards human targets, but also to reshape the generative
+        space of models to account for known priors in the distribution.
+      </p>
+    </div>
+
+    <!-- ============ PHOTO UPLOAD AREA ============ -->
+    <div class="photo-wrap">
+      <div class="photo-frame">
+        <!--
+          To add your photo:
+          1. Save your headshot into the "images" folder next to this file
+          2. Name it "profile.jpg" (or update the src below)
+          3. Uncomment the <img> tag and delete the placeholder div
+        -->
+        <!-- <img src="images/profile.jpg" alt="Zoe Wu"> -->
+        <div class="photo-placeholder">Add your photo:<br>images/profile.jpg</div>
+      </div>
+      <div class="photo-hint">Drop a headshot into <code>images/profile.jpg</code></div>
+    </div>
+  </div>
+
+  <!-- ============ LINKS ============ -->
+  <div class="links-row">
+    <a href="mailto:you@example.com">Email</a>
+    <span class="sep">/</span>
+    <a href="#">Google Scholar</a>
+    <span class="sep">/</span>
+    <a href="#">Twitter</a>
+    <span class="sep">/</span>
+    <a href="#">LinkedIn</a>
+  </div>
+
+  <!-- ============ RECENT NEWS ============ -->
+  <h2 class="section-title">Recent News</h2>
+  <div class="news-table">
+    <div class="news-row">
+      <div class="news-date">Jul 2025 &ndash; Present</div>
+      <div class="news-content">Started as a Post-baccalaureate Researcher at the <a href="#">Kempner Institute</a> at Harvard University!</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">Aug 2024 &ndash; Mar 2025</div>
+      <div class="news-content">Student Researcher at Harvard University &mdash; Generative AI research with Professor Natesh Pillai.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">May 2024 &ndash; Aug 2024</div>
+      <div class="news-content">Student Researcher at Carnegie Mellon University &mdash; Computational Neuroscience with Professor Byron Yu.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">Sep 2023 &ndash; May 2024</div>
+      <div class="news-content">Student Researcher at Harvard University &mdash; Theoretical Statistics research with Professor Sitan Chen.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">May 2023 &ndash; Aug 2023</div>
+      <div class="news-content">Engineering Intern at <a href="#">Nuro</a> in Mountain View, CA.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">Feb 2023 &ndash; May 2023</div>
+      <div class="news-content">Engineering Intern at <a href="#">Amira</a> in Somerville, MA.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">Jul 2022 &ndash; Dec 2022</div>
+      <div class="news-content">Engineering Intern at <a href="#">iRobot</a> in Bedford, MA.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">Jul 2021 &ndash; Mar 2022</div>
+      <div class="news-content">Student Researcher at the <a href="#">Wyss Institute for Biologically Inspired Engineering</a> &mdash; Computer Vision with Professor Robert Wood.</div>
+    </div>
+    <div class="news-row">
+      <div class="news-date">Sep 2021 &ndash; Feb 2022</div>
+      <div class="news-content">Project Manager for Onboarding Students, <a href="#">Harvard Undergraduate Robotics Club</a>.</div>
+    </div>
+  </div>
+
+  <!-- ============ RESEARCH ============ -->
+  <h2 class="section-title">Research</h2>
+
+  <div class="research-entry">
+    <div class="research-image">
+      <!--
+        To add a poster/figure image for this paper:
+        1. Save the image into the "images" folder
+        2. Name it "geometry-aware-ebm.png" (or update the src below)
+        3. Uncomment the <img> tag and delete the placeholder div
+      -->
+      <!-- <img src="images/geometry-aware-ebm.png" alt="Geometry-Aware Energy-Based Image Modelling poster"> -->
+      <div class="research-image-placeholder">Add poster/figure:<br>images/geometry-aware-ebm.png</div>
+    </div>
+    <div class="research-text">
+      <a class="title" href="#">Geometry-Aware Energy-Based Image Modelling</a>
+      <div class="authors"><strong>Zoe Wu</strong></div>
+      <div class="venue"><em>AAAI</em>, 2025 Workshop Paper</div>
+      <div class="venue-links">
+        <a href="#">paper</a> / <a href="#">code</a> / <a href="#">poster</a>
+      </div>
+      <div class="abstract">
+        <!-- Add your abstract / short description here -->
+        Short description of the paper goes here.
+      </div>
+    </div>
+  </div>
+
+  <!-- Add more research entries by copying the .research-entry block above -->
+
+</div>
+</body>
+</html>

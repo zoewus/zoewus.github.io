@@ -231,7 +231,7 @@
       </p>
 
       <p>
-        Check out my latest project, <a href="STEER/">STEER</a>: accurate low-temperature sampling
+        Check out my latest project, <a href="STEER/">STEER</a>: diverse low-temperature diffusion sampling
         through replica exchange.
       </p>
     </div>
@@ -301,18 +301,27 @@
 
   <div class="research-entry">
     <div class="research-image">
-      <img src="images/maze.png" alt="Accurate Low-Temperature Sampling through Parallel Replica Exchange figure">
+      <img src="images/maze.png" alt="Diverse Low-Temperature Diffusion Sampling through Replica Exchange figure">
     </div>
     <div class="research-text">
-      <a class="title" href="STEER/">Accurate Low-Temperature Sampling through Replica Exchange</a>
-      <div class="authors"><strong>Zoe Wu</strong></div>
+      <a class="title" href="STEER/">Diverse Low-Temperature Diffusion Sampling through Replica Exchange</a>
+      <div class="authors"><strong>Zoe Wu</strong>, Haldun Balim, Yilun Du</div>
       <div class="venue"><em></em>Under Review</div>
       <div class="venue-links"><a href="STEER/">Project page</a></div>
       <div class="abstract">
-        Our algorithm runs multiple temperature-scaled diffusion chains in parallel
-        and selectively propagates high-quality modes across chains via replica exchange
-        — accepting swaps only when particles are well-suited to their target tempera-
-        ture, thereby preserving each chain’s distributional integrity. 
+        Diffusion models achieve strong generative performance across domains. However, achieving high
+        sample quality under hard physical and dynamical constraints, as in protein design and robotic
+        manipulation, remains difficult. Existing inference-time methods either require a costly or
+        unavailable verifier, or avoid a verifier at the cost of reduced diversity. To relieve this tension,
+        we introduce Score Tempering with Exchange between Exploratory Replicas (STEER), a verifier-free
+        inference-time method that replaces single-chain sharpening with global search using multiple
+        diffusion chains. During sampling, neighboring chains, each at different sharpening strengths,
+        exchange particles according to an energy-based acceptance rate, propagating exploration to
+        outputted samples. Across a diverse range of domains, from synthetic multimodal distributions to
+        image generation, STEER achieves a better fidelity&ndash;diversity trade-off and improves success
+        rates on continuous-control tasks in both verifier-based and verifier-free settings. Our findings
+        suggest that effective diffusion tempering requires going beyond local updates to population-based
+        global search that enhance fidelity and diversity.
       </div>
     </div>
   </div>

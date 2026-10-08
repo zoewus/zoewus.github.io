@@ -79,21 +79,22 @@
     font-size: 15px;
     color: #333;
     max-width: 760px;
+    margin: 0 auto;
   }
 
+  h2.section-title.centered { text-align: center; }
+
   /* ---------- GIFs ---------- */
-  .gif-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: start;
+  .gif-figure {
+    max-width: 820px;
+    margin: 0 auto;
   }
 
   figure {
     margin: 0;
   }
 
-  .gif-row figure img {
+  .gif-figure img {
     width: 100%;
     height: auto;
     display: block;
@@ -200,7 +201,6 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width: 720px) {
-    .gif-row { grid-template-columns: 1fr; }
     .compare { gap: 12px; }
     h1.project { font-size: 38px; }
     .subtitle { font-size: 19px; }
@@ -221,7 +221,7 @@
     </div>
   </div>
 
-  <h2 class="section-title">Abstract</h2>
+  <h2 class="section-title centered">Abstract</h2>
   <p class="lede">
     Diffusion models achieve strong generative performance across domains. However, achieving high
     sample quality under hard physical and dynamical constraints, as in protein design and robotic
@@ -240,16 +240,16 @@
 
   <!-- ============ GIFS ============ -->
   <h2 class="section-title">How it works</h2>
-  <div class="gif-row">
-    <figure>
-      <img src="../images/steer_two_chain_swap_1.gif" alt="Animation of two STEER chains exchanging samples">
-      <figcaption>Replica exchange between two temperature-scaled chains.</figcaption>
-    </figure>
-    <figure>
-      <img src="../images/steer_vs_tsr_flow_1.gif" alt="Animation comparing STEER and TSR sampling flows">
-      <figcaption>STEER vs. TSR sampling flow.</figcaption>
-    </figure>
-  </div>
+  <figure class="gif-figure">
+    <img src="../images/steer_vs_tsr_flow_1.gif" alt="Animation comparing STEER and TSR sampling flows">
+    <figcaption>STEER vs. TSR sampling flow.</figcaption>
+  </figure>
+
+  <h2 class="section-title">Exchanges propagate exploratory samples to the target chain</h2>
+  <figure class="gif-figure">
+    <img src="../images/steer_two_chain_swap_1.gif" alt="Animation of two STEER chains exchanging samples">
+    <figcaption>Replica exchange between two temperature-scaled chains.</figcaption>
+  </figure>
 
   <!-- ============ SAMPLES ============ -->
   <h2 class="section-title">Samples across temperature</h2>

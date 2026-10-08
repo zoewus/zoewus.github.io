@@ -4,14 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zoe Wu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --text: #1a1a1a;
-    --link: #3a6fb0;
-    --news-date: #2f7d32;
-    --oral: #c0392b;
-    --border: #e3e3e3;
-    --news-bg: #fafafa;
+    --text: #1d1a2e;
+    --muted: #5a5670;
+    --violet: #6c4cff;
+    --pink: #ff4f9a;
+    --orange: #ff9a1f;
+    --teal: #10b5a4;
+    --sky: #2f8cff;
+    --link: #5b3ce6;
+    --oral: #e5334b;
+    --border: #ece8f7;
+    --card: rgba(255, 255, 255, 0.82);
+    --grad: linear-gradient(90deg, var(--violet), var(--pink) 50%, var(--orange));
   }
 
   * { box-sizing: border-box; }
@@ -19,10 +28,15 @@
   body {
     margin: 0;
     padding: 0;
-    background: #ffffff;
     color: var(--text);
-    font-family: Georgia, 'Times New Roman', serif;
-    line-height: 1.6;
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.65;
+    background:
+      radial-gradient(900px 600px at 0% 0%, rgba(108, 76, 255, 0.16), transparent 60%),
+      radial-gradient(800px 600px at 100% 10%, rgba(255, 79, 154, 0.14), transparent 60%),
+      radial-gradient(900px 700px at 50% 100%, rgba(16, 181, 164, 0.12), transparent 60%),
+      #fbf9ff;
+    background-attachment: fixed;
   }
 
   .container {
@@ -31,14 +45,22 @@
     padding: 60px 24px 100px;
   }
 
-  a { color: var(--link); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  a {
+    color: var(--link);
+    text-decoration: none;
+    background-image: linear-gradient(90deg, var(--violet), var(--pink));
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.25s ease, color 0.2s ease;
+  }
+  a:hover { color: var(--pink); background-size: 100% 2px; }
 
   /* ---------- Header ---------- */
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 40px;
     flex-wrap: wrap;
   }
@@ -49,35 +71,67 @@
   }
 
   h1.name {
-    font-size: 42px;
-    font-weight: 400;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     margin: 0 0 24px 0;
+    background: linear-gradient(90deg, var(--violet), var(--pink), var(--orange), var(--violet));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 10s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .header-text p {
     margin: 0 0 18px 0;
-    font-size: 16px;
+    font-size: 16.5px;
+  }
+
+  .callout {
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: linear-gradient(120deg, rgba(108, 76, 255, 0.1), rgba(255, 79, 154, 0.1));
+    border: 1px solid rgba(108, 76, 255, 0.2);
+  }
+  .callout a { font-weight: 700; }
+  .callout .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--grad);
+    padding: 2px 9px;
+    border-radius: 999px;
+    margin-right: 6px;
+    vertical-align: 2px;
   }
 
   /* ---------- Photo ---------- */
   .photo-wrap {
-    flex: 0 0 220px;
+    flex: 0 0 240px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    justify-content: center;
   }
 
   .photo-frame {
-    width: 220px;
-    height: 220px;
+    position: relative;
+    width: 236px;
+    height: 236px;
     border-radius: 50%;
-    overflow: hidden;
-    background: #f0f0f0;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 6px;
+    background: conic-gradient(from 0deg, var(--violet), var(--pink), var(--orange), var(--teal), var(--sky), var(--violet));
+    animation: spin 12s linear infinite;
+    box-shadow: 0 18px 50px -12px rgba(108, 76, 255, 0.45);
   }
 
   .photo-frame img {
@@ -85,51 +139,117 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    animation: spin 12s linear infinite reverse;
   }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ---------- Links row ---------- */
   .links-row {
-    text-align: center;
-    margin: 36px 0 8px;
-    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 40px 0 8px;
     font-size: 15px;
   }
 
-  .links-row span.sep {
-    color: #999;
-    margin: 0 10px;
+  .links-row a {
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: var(--c);
+    box-shadow: 0 6px 16px -6px var(--c);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+  .links-row a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -8px var(--c);
+  }
+  .links-row a:nth-of-type(1) { --c: var(--violet); }
+  .links-row a:nth-of-type(2) { --c: var(--sky); }
+  .links-row a:nth-of-type(3) { --c: var(--pink); }
+  .links-row a:nth-of-type(4) { --c: var(--teal); }
+
+  .links-row span.sep { display: none; }
 
   /* ---------- Section headings ---------- */
   h2.section-title {
-    font-family: Arial, sans-serif;
-    font-size: 28px;
-    font-weight: 500;
-    margin: 64px 0 20px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 34px;
+    font-weight: 700;
+    margin: 72px 0 24px;
+    display: inline-block;
+    position: relative;
+  }
+  h2.section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 6px;
+    border-radius: 6px;
+    background: var(--grad);
   }
 
   /* ---------- Recent News ---------- */
   .news-table {
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--news-bg);
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+    position: relative;
     font-size: 15px;
+    padding-left: 28px;
+  }
+  .news-table::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--violet), var(--pink), var(--orange), var(--teal));
   }
 
   .news-row {
+    position: relative;
     display: flex;
-    padding: 10px 20px;
-    border-bottom: 1px solid var(--border);
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-
-  .news-row:last-child { border-bottom: none; }
+  .news-row:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 24px -12px var(--c);
+  }
+  .news-row::before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 18px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--c);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px var(--c);
+  }
+  .news-row:nth-child(5n+1) { --c: var(--violet); }
+  .news-row:nth-child(5n+2) { --c: var(--pink); }
+  .news-row:nth-child(5n+3) { --c: var(--orange); }
+  .news-row:nth-child(5n+4) { --c: var(--teal); }
+  .news-row:nth-child(5n+5) { --c: var(--sky); }
 
   .news-date {
-    flex: 0 0 200px;   /* was 130px — bump this up */
-    color: var(--news-date);
-    font-weight: 600;
+    flex: 0 0 190px;
+    color: var(--c);
+    font-weight: 700;
   }
   .news-content { flex: 1; }
 
@@ -137,17 +257,39 @@
   .research-entry {
     display: flex;
     gap: 30px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     flex-wrap: wrap;
+    padding: 24px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px -18px rgba(60, 40, 140, 0.35);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .research-entry::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(180deg, var(--violet), var(--pink), var(--orange));
+  }
+  .research-entry:nth-of-type(even)::before {
+    background: linear-gradient(180deg, var(--teal), var(--sky), var(--violet));
+  }
+  .research-entry:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px -20px rgba(108, 76, 255, 0.5);
   }
 
   .research-image {
     flex: 0 0 220px;
     width: 220px;
     height: 160px;
+    border-radius: 12px;
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 4px;
-    background: #fafafa;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,30 +300,41 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.3s ease;
   }
+  .research-entry:hover .research-image img { transform: scale(1.05); }
 
   .research-text {
     flex: 1 1 400px;
     min-width: 280px;
-    font-family: Arial, sans-serif;
     font-size: 15px;
   }
 
   .research-text .title {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
-    color: var(--link);
-    margin-bottom: 4px;
-    display: block;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 6px;
+    display: inline;
   }
+  .research-text .title:hover { color: var(--link); }
 
   .research-text .authors {
-    margin-bottom: 2px;
+    margin-top: 6px;
+    margin-bottom: 4px;
   }
+  .research-text .authors strong { color: var(--violet); }
 
   .research-text .venue {
-    margin-bottom: 6px;
-    color: #444;
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 1px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #b4530a;
+    background: rgba(255, 154, 31, 0.16);
   }
 
   .research-text .oral-tag {
@@ -193,20 +346,35 @@
   }
 
   .research-text .venue-links a {
-    margin-right: 4px;
+    display: inline-block;
+    margin-right: 6px;
+    padding: 3px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--grad);
   }
+  .research-text .venue-links a:hover { color: #fff; opacity: 0.9; }
 
   .research-text .abstract {
-    color: #333;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
   }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 640px) {
+    h1.name { font-size: 48px; }
     .header { flex-direction: column-reverse; align-items: center; text-align: center; }
     .header-text { text-align: left; }
     h1.name { text-align: center; }
     .news-row { flex-direction: column; gap: 4px; }
     .news-date { flex: none; }
+    .research-entry { padding: 18px; }
+    .research-image { flex: 1 1 100%; width: 100%; }
   }
 </style>
 </head>
@@ -230,8 +398,8 @@
         with applications ranging across robotics, protein generation, reasoning, and computer vision.
       </p>
 
-      <p>
-        Check out my latest project, <a href="STEER/">STEER</a>: diverse low-temperature diffusion sampling
+      <p class="callout">
+        <span class="badge">New</span>Check out my latest project, <a href="STEER/">STEER</a>: diverse low-temperature diffusion sampling
         through replica exchange.
       </p>
     </div>

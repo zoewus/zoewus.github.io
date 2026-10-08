@@ -118,9 +118,6 @@
     padding: 20px 24px 14px;
     font-family: Arial, sans-serif;
     margin-bottom: 28px;
-    position: sticky;
-    top: 0;
-    z-index: 5;
   }
 
   .slider-head {
@@ -172,79 +169,39 @@
     font-weight: 700;
   }
 
-  .slider-note {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 6px;
-  }
-
-  /* ---------- Gallery ---------- */
-  .gallery {
+  /* ---------- Comparison ---------- */
+  .compare {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
 
-  .card {
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 12px;
-    background: #fff;
-  }
+  .compare figure { margin: 0; }
 
-  .card.pair {
-    grid-column: span 2;
-  }
+  .compare a { display: block; }
 
-  .card-title {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    text-transform: capitalize;
-  }
-
-  .card-images {
-    display: grid;
-    grid-template-columns: repeat(var(--cols, 1), 1fr);
-    gap: 10px;
-  }
-
-  .card-images a { display: block; position: relative; }
-
-  .card-images img {
+  .compare img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     display: block;
     border-radius: 3px;
+    border: 1px solid var(--border);
     background: var(--panel-bg);
   }
 
-  .tag {
-    position: absolute;
-    top: 8px;
-    left: 8px;
+  .compare figcaption {
     font-family: Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 3px;
-    background: var(--steer);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 8px;
   }
-
-  .tag.tsr { background: var(--tsr); }
 
   /* ---------- Responsive ---------- */
-  @media (max-width: 900px) {
-    .gallery { grid-template-columns: repeat(2, 1fr); }
-  }
-
   @media (max-width: 720px) {
     .gif-row { grid-template-columns: 1fr; }
-    .gallery { grid-template-columns: 1fr; }
-    .card.pair { grid-column: span 1; }
+    .compare { gap: 12px; }
     h1.project { font-size: 38px; }
     .subtitle { font-size: 19px; }
   }
@@ -292,41 +249,37 @@
       <label for="lambda">Temperature &lambda;</label>
       <div class="lambda-value"><em>&lambda;</em> = <span id="lambda-out">1.1</span></div>
     </div>
-    <input type="range" id="lambda" min="0" max="4" step="1" value="4" aria-describedby="lambda-note">
+    <input type="range" id="lambda" min="0" max="2" step="1" value="2">
     <div class="ticks" id="ticks"></div>
-    <div class="slider-note" id="lambda-note"></div>
   </div>
 
-  <div class="gallery" id="gallery"></div>
+  <div class="compare">
+    <figure>
+      <a id="single-link" target="_blank" rel="noopener" title="Open full resolution"><img id="single-img" alt=""></a>
+      <figcaption>Single Replica</figcaption>
+    </figure>
+    <figure>
+      <a id="four-link" target="_blank" rel="noopener" title="Open full resolution"><img id="four-img" alt=""></a>
+      <figcaption>Four Replicas</figcaption>
+    </figure>
+  </div>
 
 </div>
 
 <script>
   // Folder suffix in images/steer_web/ uses the temperature with "." -> "_" (e.g. steer_1_1 = λ 1.1).
   // Originals live in images/steer_tsr/ as e.g. "steer 11" for λ 1.1.
+  // Only temperatures with both a TSR (single replica) and STEER (four replicas) sample are listed.
+  var SCENE = 'skateboard_1176';
   var TEMPS = [
-    { lambda: '0.95', key: '0_95', orig: '095',
-      steer: ['bench_5820','clock_2529','cow_3771','elephant_757','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369','tennis_1292'],
-      tsr:   ['bench_5820','cow_3771','skateboard_1176','tennis_1292'] },
-    { lambda: '0.98', key: '0_98', orig: '098',
-      steer: ['bench_5820','cow_3771','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369'],
-      tsr:   [] },
-    { lambda: '1.02', key: '1_02', orig: '102',
-      steer: ['bench_5820','cow_3771','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369'],
-      tsr:   [] },
-    { lambda: '1.05', key: '1_05', orig: '105',
-      steer: ['bench_5820','cow_3771','elephant_757','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369','tennis_1292'],
-      tsr:   ['bench_5820','cow_3771','skateboard_1176','tennis_1292'] },
-    { lambda: '1.1', key: '1_1', orig: '11',
-      steer: ['bench_5820','cow_3771','elephant_757','signs_1779','skateboard_1176','ski_2532','tennis_1292'],
-      tsr:   ['bench_5820','cow_3771','skateboard_1176','tennis_1292'] }
+    { lambda: '0.95', key: '0_95', orig: '095' },
+    { lambda: '1.05', key: '1_05', orig: '105' },
+    { lambda: '1.1',  key: '1_1',  orig: '11' }
   ];
 
-  var slider  = document.getElementById('lambda');
-  var out     = document.getElementById('lambda-out');
-  var note    = document.getElementById('lambda-note');
-  var gallery = document.getElementById('gallery');
-  var ticks   = document.getElementById('ticks');
+  var slider = document.getElementById('lambda');
+  var out    = document.getElementById('lambda-out');
+  var ticks  = document.getElementById('ticks');
 
   TEMPS.forEach(function (t, i) {
     var b = document.createElement('button');
@@ -336,24 +289,12 @@
     ticks.appendChild(b);
   });
 
-  function sceneName(id) { return id.split('_')[0]; }
-
-  function imageLink(method, t, id) {
-    var a = document.createElement('a');
-    a.href = '../images/steer_tsr/' + encodeURIComponent(method + ' ' + t.orig) + '/' + id + '.png';
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.title = 'Open full resolution';
-    var img = document.createElement('img');
-    img.src = '../images/steer_web/' + method + '_' + t.key + '/' + id + '.jpg';
-    img.alt = method.toUpperCase() + ' sample, ' + sceneName(id) + ', lambda ' + t.lambda;
-    img.loading = 'lazy';
-    var tag = document.createElement('span');
-    tag.className = 'tag' + (method === 'tsr' ? ' tsr' : '');
-    tag.textContent = method.toUpperCase();
-    a.appendChild(img);
-    a.appendChild(tag);
-    return a;
+  function setImage(prefix, method, label, t) {
+    document.getElementById(prefix + '-link').href =
+      '../images/steer_tsr/' + encodeURIComponent(method + ' ' + t.orig) + '/' + SCENE + '.png';
+    var img = document.getElementById(prefix + '-img');
+    img.src = '../images/steer_web/' + method + '_' + t.key + '/' + SCENE + '.jpg';
+    img.alt = label + ' sample, skateboard, lambda ' + t.lambda;
   }
 
   function render() {
@@ -363,32 +304,8 @@
     Array.prototype.forEach.call(ticks.children, function (b, j) {
       b.classList.toggle('active', j === i);
     });
-    note.textContent = t.tsr.length
-      ? 'Scenes with a TSR sample at this temperature are shown side by side with STEER.'
-      : 'STEER samples only at this temperature.';
-
-    // Paired comparisons first, then STEER-only scenes.
-    var ids = t.steer.slice().sort(function (a, b) {
-      return (t.tsr.indexOf(b) >= 0) - (t.tsr.indexOf(a) >= 0);
-    });
-
-    gallery.innerHTML = '';
-    ids.forEach(function (id) {
-      var hasTsr = t.tsr.indexOf(id) >= 0;
-      var card = document.createElement('div');
-      card.className = 'card' + (hasTsr ? ' pair' : '');
-      var title = document.createElement('div');
-      title.className = 'card-title';
-      title.textContent = sceneName(id);
-      var imgs = document.createElement('div');
-      imgs.className = 'card-images';
-      imgs.style.setProperty('--cols', hasTsr ? 2 : 1);
-      imgs.appendChild(imageLink('steer', t, id));
-      if (hasTsr) imgs.appendChild(imageLink('tsr', t, id));
-      card.appendChild(title);
-      card.appendChild(imgs);
-      gallery.appendChild(card);
-    });
+    setImage('single', 'tsr', 'Single replica', t);
+    setImage('four', 'steer', 'Four replicas', t);
   }
 
   slider.addEventListener('input', render);

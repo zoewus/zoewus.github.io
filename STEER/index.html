@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEER &middot; Zoe Wu</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555;
+    --link: #3a6fb0;
+    --border: #e3e3e3;
+    --panel-bg: #fafafa;
+    --steer: #3a6fb0;
+    --tsr: #8a8a8a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 100px;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .back {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  /* ---------- Title block ---------- */
+  .title-block {
+    text-align: center;
+    margin: 32px 0 40px;
+  }
+
+  h1.project {
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin: 0 0 6px;
+  }
+
+  .subtitle {
+    font-size: 22px;
+    margin: 0 0 16px;
+  }
+
+  .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .meta .author { color: var(--text); font-weight: 700; }
+
+  /* ---------- Section headings ---------- */
+  h2.section-title {
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 56px 0 16px;
+  }
+
+  .lede {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: #333;
+    max-width: 760px;
+  }
+
+  /* ---------- GIFs ---------- */
+  .gif-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  .gif-row figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--panel-bg);
+  }
+
+  figcaption {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* ---------- Temperature slider ---------- */
+  .slider-panel {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--panel-bg);
+    padding: 20px 24px 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .slider-head label {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .lambda-value {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+  }
+
+  .lambda-value em { font-style: italic; }
+
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--steer);
+    margin: 4px 0 0;
+  }
+
+  .ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 0 2px;
+  }
+
+  .ticks button {
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .ticks button.active {
+    color: var(--steer);
+    font-weight: 700;
+  }
+
+  .slider-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+    background: #fff;
+  }
+
+  .card.pair {
+    grid-column: span 2;
+  }
+
+  .card-title {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+  }
+
+  .card-images {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 1), 1fr);
+    gap: 10px;
+  }
+
+  .card-images a { display: block; position: relative; }
+
+  .card-images img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+    background: var(--panel-bg);
+  }
+
+  .tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--steer);
+  }
+
+  .tag.tsr { background: var(--tsr); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px) {
+    .gif-row { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr; }
+    .card.pair { grid-column: span 1; }
+    h1.project { font-size: 38px; }
+    .subtitle { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a class="back" href="../">&larr; Zoe Wu</a>
+
+  <!-- ============ TITLE ============ -->
+  <div class="title-block">
+    <h1 class="project">STEER</h1>
+    <p class="subtitle">Accurate Low-Temperature Sampling through Replica Exchange</p>
+    <div class="meta">
+      <span class="author">Zoe Wu</span> &middot; Under Review
+    </div>
+  </div>
+
+  <p class="lede">
+    Our algorithm runs multiple temperature-scaled diffusion chains in parallel
+    and selectively propagates high-quality modes across chains via replica exchange
+    &mdash; accepting swaps only when particles are well-suited to their target temperature,
+    thereby preserving each chain&rsquo;s distributional integrity.
+  </p>
+
+  <!-- ============ GIFS ============ -->
+  <h2 class="section-title">How it works</h2>
+  <div class="gif-row">
+    <figure>
+      <img src="../images/steer_two_chain_swap_1.gif" alt="Animation of two STEER chains exchanging samples">
+      <figcaption>Replica exchange between two temperature-scaled chains.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/steer_vs_tsr_flow_1.gif" alt="Animation comparing STEER and TSR sampling flows">
+      <figcaption>STEER vs. TSR sampling flow.</figcaption>
+    </figure>
+  </div>
+
+  <!-- ============ SAMPLES ============ -->
+  <h2 class="section-title">Samples across temperature</h2>
+
+  <div class="slider-panel">
+    <div class="slider-head">
+      <label for="lambda">Temperature &lambda;</label>
+      <div class="lambda-value"><em>&lambda;</em> = <span id="lambda-out">1.1</span></div>
+    </div>
+    <input type="range" id="lambda" min="0" max="4" step="1" value="4" aria-describedby="lambda-note">
+    <div class="ticks" id="ticks"></div>
+    <div class="slider-note" id="lambda-note"></div>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+</div>
+
+<script>
+  // Folder suffix in images/steer_web/ uses the temperature with "." -> "_" (e.g. steer_1_1 = λ 1.1).
+  // Originals live in images/steer_tsr/ as e.g. "steer 11" for λ 1.1.
+  var TEMPS = [
+    { lambda: '0.95', key: '0_95', orig: '095',
+      steer: ['bench_5820','clock_2529','cow_3771','elephant_757','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369','tennis_1292'],
+      tsr:   ['bench_5820','cow_3771','skateboard_1176','tennis_1292'] },
+    { lambda: '0.98', key: '0_98', orig: '098',
+      steer: ['bench_5820','cow_3771','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369'],
+      tsr:   [] },
+    { lambda: '1.02', key: '1_02', orig: '102',
+      steer: ['bench_5820','cow_3771','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369'],
+      tsr:   [] },
+    { lambda: '1.05', key: '1_05', orig: '105',
+      steer: ['bench_5820','cow_3771','elephant_757','room_3145','signs_1779','skateboard_1176','ski_2532','surf_1369','tennis_1292'],
+      tsr:   ['bench_5820','cow_3771','skateboard_1176','tennis_1292'] },
+    { lambda: '1.1', key: '1_1', orig: '11',
+      steer: ['bench_5820','cow_3771','elephant_757','signs_1779','skateboard_1176','ski_2532','tennis_1292'],
+      tsr:   ['bench_5820','cow_3771','skateboard_1176','tennis_1292'] }
+  ];
+
+  var slider  = document.getElementById('lambda');
+  var out     = document.getElementById('lambda-out');
+  var note    = document.getElementById('lambda-note');
+  var gallery = document.getElementById('gallery');
+  var ticks   = document.getElementById('ticks');
+
+  TEMPS.forEach(function (t, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = t.lambda;
+    b.addEventListener('click', function () { slider.value = i; render(); });
+    ticks.appendChild(b);
+  });
+
+  function sceneName(id) { return id.split('_')[0]; }
+
+  function imageLink(method, t, id) {
+    var a = document.createElement('a');
+    a.href = '../images/steer_tsr/' + encodeURIComponent(method + ' ' + t.orig) + '/' + id + '.png';
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.title = 'Open full resolution';
+    var img = document.createElement('img');
+    img.src = '../images/steer_web/' + method + '_' + t.key + '/' + id + '.jpg';
+    img.alt = method.toUpperCase() + ' sample, ' + sceneName(id) + ', lambda ' + t.lambda;
+    img.loading = 'lazy';
+    var tag = document.createElement('span');
+    tag.className = 'tag' + (method === 'tsr' ? ' tsr' : '');
+    tag.textContent = method.toUpperCase();
+    a.appendChild(img);
+    a.appendChild(tag);
+    return a;
+  }
+
+  function render() {
+    var i = +slider.value;
+    var t = TEMPS[i];
+    out.textContent = t.lambda;
+    Array.prototype.forEach.call(ticks.children, function (b, j) {
+      b.classList.toggle('active', j === i);
+    });
+    note.textContent = t.tsr.length
+      ? 'Scenes with a TSR sample at this temperature are shown side by side with STEER.'
+      : 'STEER samples only at this temperature.';
+
+    // Paired comparisons first, then STEER-only scenes.
+    var ids = t.steer.slice().sort(function (a, b) {
+      return (t.tsr.indexOf(b) >= 0) - (t.tsr.indexOf(a) >= 0);
+    });
+
+    gallery.innerHTML = '';
+    ids.forEach(function (id) {
+      var hasTsr = t.tsr.indexOf(id) >= 0;
+      var card = document.createElement('div');
+      card.className = 'card' + (hasTsr ? ' pair' : '');
+      var title = document.createElement('div');
+      title.className = 'card-title';
+      title.textContent = sceneName(id);
+      var imgs = document.createElement('div');
+      imgs.className = 'card-images';
+      imgs.style.setProperty('--cols', hasTsr ? 2 : 1);
+      imgs.appendChild(imageLink('steer', t, id));
+      if (hasTsr) imgs.appendChild(imageLink('tsr', t, id));
+      card.appendChild(title);
+      card.appendChild(imgs);
+      gallery.appendChild(card);
+    });
+  }
+
+  slider.addEventListener('input', render);
+  render();
+</script>
+</body>
+</html>

@@ -299,6 +299,33 @@
     color: var(--c);
   }
 
+  /* ---------- Maze planning ---------- */
+  .maze-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .maze-grid figure {
+    margin: 0;
+    padding: 10px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px -18px rgba(30, 45, 70, 0.3);
+  }
+
+  .maze-grid figure.maze-steer { border: 2px solid var(--steer); }
+
+  .maze-grid video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    display: block;
+    border-radius: 10px;
+    background: #0b1020;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
@@ -306,6 +333,7 @@
   /* ---------- Responsive ---------- */
   @media (max-width: 720px) {
     .compare { gap: 12px; }
+    .maze-grid { grid-template-columns: 1fr; gap: 14px; }
     .compare figure { padding: 8px 8px 10px; }
     h1.project { font-size: clamp(56px, 24vw, 96px); }
     .subtitle { font-size: 19px; }
@@ -470,7 +498,7 @@
   </figure>
 
   <!-- ============ SAMPLES ============ -->
-  <h2 class="section-title">Stable Diffusion Samples</h2>
+  <h2 class="section-title">STEER enhances per-sample fidelity</h2>
 
   <div class="slider-panel">
     <div class="slider-head">
@@ -489,6 +517,23 @@
     <figure>
       <a id="four-link" target="_blank" rel="noopener" title="Open full resolution"><img id="four-img" alt=""></a>
       <figcaption>Four Replicas</figcaption>
+    </figure>
+  </div>
+
+  <!-- ============ MAZE PLANNING ============ -->
+  <h2 class="section-title">STEER excels at long-range horizon planning when composed with verifiers</h2>
+  <div class="maze-grid">
+    <figure class="maze-steer">
+      <video src="../images/maze/steer.mp4" autoplay muted loop playsinline aria-label="STEER solving a giant point maze"></video>
+    </figure>
+    <figure>
+      <video src="../images/maze/tsr.mp4" autoplay muted loop playsinline aria-label="TSR attempting the same giant point maze"></video>
+    </figure>
+    <figure>
+      <video src="../images/maze/bfs.mp4" autoplay muted loop playsinline aria-label="BFS-resampling attempting the same giant point maze"></video>
+    </figure>
+    <figure>
+      <video src="../images/maze/crepe.mp4" autoplay muted loop playsinline aria-label="CREPE attempting the same giant point maze"></video>
     </figure>
   </div>
 

@@ -67,7 +67,7 @@
 
   h1.project {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 120px;
+    font-size: 168px;
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: 0.02em;
@@ -307,7 +307,7 @@
   @media (max-width: 720px) {
     .compare { gap: 12px; }
     .compare figure { padding: 8px 8px 10px; }
-    h1.project { font-size: 76px; }
+    h1.project { font-size: clamp(56px, 24vw, 96px); }
     .subtitle { font-size: 19px; }
     .lede { padding: 18px; }
   }

@@ -47,9 +47,14 @@
 
   /* ---------- Muted blue band (top of page) ---------- */
   .band-blue {
+    display: flow-root;
     background: #eef1f5;
   }
-  .container.top { padding-bottom: 72px; }
+  .container.top { padding-top: 0; padding-bottom: 72px; }
+
+  .band-header { background: #e3e8ef; }
+  .container.header { padding-bottom: 48px; }
+  .container.header .title-block { margin-bottom: 0; }
 
   .back {
     display: inline-block;
@@ -398,8 +403,8 @@
 </style>
 </head>
 <body>
-<div class="band-blue">
-<div class="container top">
+<div class="band-header">
+<div class="container header">
 
   <a class="back" href="../">&larr; Zoe Wu</a>
 
@@ -423,6 +428,12 @@
       </a>
     </div>
   </div>
+
+</div>
+</div>
+
+<div class="band-blue">
+<div class="container top">
 
   <h2 class="section-title centered">Abstract</h2>
   <p class="lede">

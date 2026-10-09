@@ -302,6 +302,14 @@
     color: var(--c);
   }
 
+  .section-note {
+    font-size: 15px;
+    color: var(--muted);
+    text-align: center;
+    max-width: 800px;
+    margin: 18px auto 0;
+  }
+
   /* ---------- Maze planning ---------- */
   .maze-grid {
     display: grid;
@@ -522,6 +530,9 @@
       <figcaption>Four Replicas</figcaption>
     </figure>
   </div>
+  <p class="section-note">
+    STEER enables low-temperature sampling without losing semantic fidelity.
+  </p>
 
   <!-- ============ MAZE PLANNING ============ -->
   <h2 class="section-title">STEER excels at long-range horizon planning when composed with verifiers</h2>
@@ -539,6 +550,9 @@
       <video src="../images/maze/crepe.mp4" autoplay muted loop playsinline aria-label="CREPE attempting the same giant point maze"></video>
     </figure>
   </div>
+  <p class="section-note">
+    High-temperature replicas explore possible trajectories, while swaps with low-temperature replicas cool them down to follow the maze walls.
+  </p>
 
 </div>
 

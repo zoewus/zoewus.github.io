@@ -327,6 +327,11 @@
     </div>
   </div>
 
+  <!-- ============ HERO ============ -->
+  <figure class="gif-figure">
+    <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
+  </figure>
+
   <h2 class="section-title centered">Abstract</h2>
   <p class="lede">
     Diffusion models achieve strong generative performance across domains. However, achieving high
@@ -413,7 +418,6 @@
     <figure class="step-view">
       <img id="step-img" src="../images/framework_animation.gif"
            alt="Animation of the STEER framework: replicas start together, fan out during score-rescaled diffusion steps, and exchange samples between neighboring chains">
-      <figcaption id="step-cap">STEER alternates score-rescaled diffusion steps with replica exchange between hot and cold chains.</figcaption>
     </figure>
     <div class="steps-bottom" id="steps-bottom"></div>
   </div>
@@ -422,28 +426,21 @@
   (function () {
     var STEPS = [
       { t: 'Play animation', img: '../images/framework_animation.gif',
-        d: 'Watch the full loop.',
-        c: 'STEER alternates score-rescaled diffusion steps with replica exchange between hot and cold chains.' },
+        d: 'Watch the full loop.' },
       { t: 'Initialize samples', img: '../images/framework_steps/step_0.png',
-        d: 'All replicas start from the same noise prior, each assigned a different sharpening strength.',
-        c: 'Step 0 &mdash; all replicas begin clustered at a shared initialization, before the first diffusion step.' },
+        d: 'All replicas start from the same noise prior, each assigned a different sharpening strength.' },
       { t: 'Score-rescaling diffusion step', img: '../images/framework_steps/step_1.png',
-        d: 'Each replica denoises with its own rescaled score, so the chains fan apart: hot chains explore, cold chains sharpen.',
-        c: 'Step 1 &mdash; a score-rescaled denoising step spreads the replicas across temperatures.' },
+        d: 'Each replica denoises with its own rescaled score, so the chains fan apart: hot chains explore, cold chains sharpen.' },
       { t: 'Compute acceptances', img: '../images/framework_steps/step_2.png',
-        d: 'Neighboring chains propose an exchange, accepted with an energy-based Metropolis probability.',
-        c: 'Step 2 &mdash; acceptance probabilities are computed for neighboring replica pairs.' },
+        d: 'Neighboring chains propose an exchange, accepted with an energy-based Metropolis probability.' },
       { t: 'Swap samples', img: '../images/framework_steps/step_3.png',
-        d: 'Accepted pairs trade particles, propagating exploratory samples down into the target chain.',
-        c: 'Step 3 &mdash; the accepted pair swaps, carrying exploration into the colder chain.' },
+        d: 'Accepted pairs trade particles, propagating exploratory samples down into the target chain.' },
       { t: 'Repeat', img: '../images/framework_steps/step_4.png',
-        d: 'Alternate diffusion steps and exchanges until the chains reach the data distribution; the coldest chain is the output.',
-        c: 'Step 4 &mdash; steps 1&ndash;3 repeat along the diffusion chain until sampling finishes.' }
+        d: 'Alternate diffusion steps and exchanges until the chains reach the data distribution; the coldest chain is the output.' }
     ];
     var list = document.getElementById('steps-list');
     var bottom = document.getElementById('steps-bottom');
     var img  = document.getElementById('step-img');
-    var cap  = document.getElementById('step-cap');
     var btns = [];
     STEPS.forEach(function (s, i) {
       var b = document.createElement('button');
@@ -455,7 +452,6 @@
         btns.forEach(function (x) { x.classList.remove('active'); });
         b.classList.add('active');
         img.src = s.img;
-        cap.innerHTML = s.c;
       });
       (i >= 4 ? bottom : list).appendChild(b);
       btns.push(b);
@@ -466,13 +462,11 @@
   <h2 class="section-title">STEER discovers isolated modes through global search algorithm</h2>
   <figure class="gif-figure">
     <img src="../images/steer_vs_tsr_flow.gif" alt="Animation comparing STEER and TSR sampling flows">
-    <figcaption>STEER vs. TSR sampling flow.</figcaption>
   </figure>
 
   <h2 class="section-title">Exchanges propagate exploratory samples to the target chain</h2>
   <figure class="gif-figure">
     <img src="../images/steer_two_chain_swap.gif" alt="Animation of two STEER chains exchanging samples">
-    <figcaption>Replica exchange between two temperature-scaled chains.</figcaption>
   </figure>
 
   <!-- ============ SAMPLES ============ -->

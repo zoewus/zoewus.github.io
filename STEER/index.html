@@ -33,12 +33,7 @@
     color: var(--text);
     font-family: 'Inter', Arial, sans-serif;
     line-height: 1.65;
-    background:
-      radial-gradient(900px 600px at 0% 0%, rgba(74, 109, 156, 0.14), transparent 60%),
-      radial-gradient(800px 600px at 100% 10%, rgba(181, 82, 74, 0.10), transparent 60%),
-      radial-gradient(900px 700px at 50% 100%, rgba(74, 109, 156, 0.08), transparent 60%),
-      #f9f9fb;
-    background-attachment: fixed;
+    background: #efe1df;
   }
 
   .container {
@@ -49,6 +44,12 @@
 
   a { color: var(--link); text-decoration: none; }
   a:hover { color: var(--red); }
+
+  /* ---------- Muted blue band (top of page) ---------- */
+  .band-blue {
+    background: #dfe6ef;
+  }
+  .container.top { padding-bottom: 72px; }
 
   .back {
     display: inline-block;
@@ -352,7 +353,8 @@
 </style>
 </head>
 <body>
-<div class="container">
+<div class="band-blue">
+<div class="container top">
 
   <a class="back" href="../">&larr; Zoe Wu</a>
 
@@ -507,6 +509,10 @@
     <img src="../images/steer_two_chain_swap.gif" alt="Animation of two STEER chains exchanging samples">
   </figure>
 
+</div>
+</div>
+
+<div class="container">
   <!-- ============ SAMPLES ============ -->
   <h2 class="section-title">STEER enhances per-sample fidelity</h2>
   <p class="section-intro">

@@ -302,12 +302,11 @@
     color: var(--c);
   }
 
-  .section-note {
-    font-size: 15px;
-    color: var(--muted);
-    text-align: center;
-    max-width: 800px;
-    margin: 18px auto 0;
+  .section-intro {
+    font-size: 15.5px;
+    color: #333;
+    max-width: 860px;
+    margin: -4px 0 22px;
   }
 
   /* ---------- Maze planning ---------- */
@@ -510,6 +509,11 @@
 
   <!-- ============ SAMPLES ============ -->
   <h2 class="section-title">STEER enhances per-sample fidelity</h2>
+  <p class="section-intro">
+    Lowering the temperature sharpens samples, but a single chain pushed to low temperature tends to
+    lose semantic fidelity to the prompt. STEER exchanges samples with higher-temperature replicas,
+    allowing low-temperature sampling that stays sharp without sacrificing semantic fidelity.
+  </p>
 
   <div class="slider-panel">
     <div class="slider-head">
@@ -530,12 +534,14 @@
       <figcaption>Four Replicas</figcaption>
     </figure>
   </div>
-  <p class="section-note">
-    STEER enables low-temperature sampling without losing semantic fidelity.
-  </p>
 
   <!-- ============ MAZE PLANNING ============ -->
   <h2 class="section-title">STEER excels at long-range horizon planning when composed with verifiers</h2>
+  <p class="section-intro">
+    High-temperature replicas explore the space of possible trajectories more broadly, while swaps
+    with low-temperature replicas let promising trajectories cool down into precise plans that
+    follow the maze walls.
+  </p>
   <div class="maze-grid">
     <figure class="maze-steer">
       <video src="../images/maze/steer.mp4" autoplay muted loop playsinline aria-label="STEER solving a giant point maze"></video>
@@ -550,9 +556,6 @@
       <video src="../images/maze/crepe.mp4" autoplay muted loop playsinline aria-label="CREPE attempting the same giant point maze"></video>
     </figure>
   </div>
-  <p class="section-note">
-    High-temperature replicas explore possible trajectories, while swaps with low-temperature replicas cool them down to follow the maze walls.
-  </p>
 
 </div>
 

@@ -97,7 +97,7 @@
     color: var(--muted);
   }
 
-  .meta .author { color: var(--blue); }
+  .meta .author { color: inherit; }
 
   /* ---------- Section headings ---------- */
   h2.section-title {
@@ -322,7 +322,7 @@
   <!-- ============ TITLE ============ -->
   <div class="title-block">
     <h1 class="project">STEER</h1>
-    <p class="subtitle">Diverse Low-Temperature Diffusion Sampling through Replica Exchange</p>
+    <p class="subtitle">Diverse Low-Temperature Diffusion Sampling<br>through Replica Exchange</p>
     <div class="meta">
       <span class="author">Zoe Wu</span>, Haldun Balim, Yilun Du &middot; Under Review
     </div>
@@ -352,9 +352,15 @@
     display: grid;
     grid-template-columns: 250px 1fr;
     gap: 18px;
-    align-items: start;
+    align-items: stretch;
   }
   .steps-list { display: flex; flex-direction: column; gap: 10px; }
+  .steps-bottom {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
   .step-btn {
     text-align: left;
     font: inherit;
@@ -384,6 +390,9 @@
   }
   .step-btn.active .n { background: var(--blue); color: #fff; }
   .step-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 14px;
     border-radius: 18px;
     background: var(--card);
@@ -393,6 +402,8 @@
   .step-view img { width: 100%; height: auto; display: block; border-radius: 10px; background: #fff; }
   @media (max-width: 720px) {
     .steps-wrap { grid-template-columns: 1fr; }
+    .steps-bottom { grid-template-columns: 1fr; gap: 10px; margin-top: -8px; }
+    .step-view { order: 1; }
     .step-btn .d { display: none; }
     .step-btn.active .d { display: block; }
   }
@@ -405,6 +416,7 @@
            alt="Animation of the STEER framework: replicas start together, fan out during score-rescaled diffusion steps, and exchange samples between neighboring chains">
       <figcaption id="step-cap">STEER alternates score-rescaled diffusion steps with replica exchange between hot and cold chains.</figcaption>
     </figure>
+    <div class="steps-bottom" id="steps-bottom"></div>
   </div>
 
   <script>
@@ -415,7 +427,7 @@
         c: 'STEER alternates score-rescaled diffusion steps with replica exchange between hot and cold chains.' },
       { t: 'Initialize samples', img: '../images/framework_steps/step_0.png',
         d: 'All replicas start from the same noise prior, each assigned a different sharpening strength.',
-        c: 'Step 0 &mdash; replicas begin clustered at a shared initialization.' },
+        c: 'Step 0 &mdash; all replicas begin clustered at a shared initialization, before the first diffusion step.' },
       { t: 'Score-rescaling diffusion step', img: '../images/framework_steps/step_1.png',
         d: 'Each replica denoises with its own rescaled score, so the chains fan apart: hot chains explore, cold chains sharpen.',
         c: 'Step 1 &mdash; a score-rescaled denoising step spreads the replicas across temperatures.' },
@@ -424,9 +436,13 @@
         c: 'Step 2 &mdash; acceptance probabilities are computed for neighboring replica pairs.' },
       { t: 'Swap samples', img: '../images/framework_steps/step_3.png',
         d: 'Accepted pairs trade particles, propagating exploratory samples down into the target chain.',
-        c: 'Step 3 &mdash; the accepted pair swaps, carrying exploration into the colder chain.' }
+        c: 'Step 3 &mdash; the accepted pair swaps, carrying exploration into the colder chain.' },
+      { t: 'Repeat', img: '../images/framework_steps/step_4.png',
+        d: 'Alternate diffusion steps and exchanges until the chains reach the data distribution; the coldest chain is the output.',
+        c: 'Step 4 &mdash; steps 1&ndash;3 repeat along the diffusion chain until sampling finishes.' }
     ];
     var list = document.getElementById('steps-list');
+    var bottom = document.getElementById('steps-bottom');
     var img  = document.getElementById('step-img');
     var cap  = document.getElementById('step-cap');
     var btns = [];
@@ -442,7 +458,7 @@
         img.src = s.img;
         cap.innerHTML = s.c;
       });
-      list.appendChild(b);
+      (i >= 4 ? bottom : list).appendChild(b);
       btns.push(b);
     });
   })();

@@ -577,11 +577,11 @@
     manipulation, remains difficult. Existing inference-time methods either require a costly or
     unavailable verifier, or avoid a verifier at the cost of reduced diversity. To relieve this tension,
     we introduce Score Tempering with Exchange between Exploratory Replicas (STEER), a <strong>verifier-free</strong>
-    inference-time method that replaces single-chain sharpening with <strong>global search using multiple
-    diffusion chains</strong>. During sampling, neighboring chains, each at different sharpening strengths,
+    inference-time method that replaces single-chain sharpening with <a class="abstract-link" href="#global-search"><strong>global search using multiple
+    diffusion chains</strong></a>. During sampling, neighboring chains, each at different sharpening strengths,
     exchange particles according to an energy-based acceptance rate, propagating exploration to
     outputted samples. Across a diverse range of domains, from synthetic multimodal distributions to
-    image generation, STEER achieves a <strong>better fidelity&ndash;diversity trade-off</strong> and improves success
+    image generation, STEER achieves a <a class="abstract-link" href="#per-sample-fidelity"><strong>better fidelity&ndash;diversity trade-off</strong></a> and improves success
     rates on continuous-control tasks in <a class="abstract-link" href="#continuous-control"><strong>both verifier-based and verifier-free settings</strong></a>. Our findings
     suggest that effective diffusion tempering requires going beyond local updates to population-based
     global search that enhance fidelity and diversity.
@@ -708,7 +708,7 @@
 
   <hr class="section-rule">
 
-  <h2 class="section-title">STEER discovers isolated modes through global search algorithm</h2>
+  <h2 class="section-title" id="global-search">STEER discovers isolated modes through global search algorithm</h2>
   <figure class="gif-figure">
     <img src="../images/steer_vs_tsr_flow.gif" alt="Animation comparing STEER and TSR sampling flows">
   </figure>
@@ -723,7 +723,7 @@
 
 <div class="container">
   <!-- ============ SAMPLES ============ -->
-  <h2 class="section-title">STEER enhances per-sample fidelity</h2>
+  <h2 class="section-title" id="per-sample-fidelity">STEER enhances per-sample fidelity</h2>
   <p class="section-intro">
     Lowering the temperature sharpens samples, but a single chain pushed to low temperature tends to
     lose semantic fidelity to the prompt. STEER exchanges samples with higher-temperature replicas,

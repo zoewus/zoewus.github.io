@@ -203,15 +203,10 @@
   h2.section-title.centered::after { left: 50%; transform: translateX(-50%); }
 
   .lede {
-    font-size: 15.5px;
+    font-size: 17px;
+    line-height: 1.7;
     color: #333;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 24px 28px;
-    border-radius: 18px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 30px -18px rgba(30, 45, 70, 0.3);
+    margin: 0;
   }
 
   /* ---------- GIFs ---------- */
@@ -435,7 +430,6 @@
     .compare figure { padding: 8px 8px 10px; }
     h1.project { font-size: clamp(80px, 28vw, 120px); margin-bottom: 28px; }
     .subtitle { font-size: 20px; }
-    .lede { padding: 18px; }
   }
 </style>
 </head>
@@ -474,7 +468,7 @@
 <div class="band-blue">
 <div class="container top">
 
-  <h2 class="section-title centered">Abstract</h2>
+  <h2 class="section-title">Abstract</h2>
   <p class="lede">
     Diffusion models achieve strong generative performance across domains. However, achieving high
     sample quality under hard physical and dynamical constraints, as in protein design and robotic

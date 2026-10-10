@@ -222,16 +222,34 @@
     object-fit: contain;
   }
 
-  /* Abstract fills one screen, then a rule before "How it works". */
+  /* Abstract: one full screen on a dark brown band. */
+  .band-abstract {
+    display: flow-root;
+    background: #1e1612;
+    color: #f5efe8;
+    border-bottom: 1px solid rgba(30, 45, 70, 0.18);
+  }
   .abstract-page {
     min-height: 100vh;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 24px 0 72px;
+    padding: 72px 0;
   }
   .abstract-page h2.section-title { margin-top: 0; }
+  .band-abstract .lede { color: rgba(245, 239, 232, 0.9); }
+
+  /* "How it works" fills one screen, then a rule before the next section. */
+  .how-page {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 72px 0;
+  }
+  .how-page h2.section-title { margin-top: 0; }
 
   hr.section-rule {
     border: 0;
@@ -507,8 +525,8 @@
   <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
 </section>
 
-<div class="band-blue">
-<div class="container top">
+<div class="band-abstract">
+<div class="container">
 
   <div class="abstract-page">
   <h2 class="section-title">Abstract</h2>
@@ -529,9 +547,14 @@
   </p>
   </div>
 
-  <hr class="section-rule">
+</div>
+</div>
+
+<div class="band-blue">
+<div class="container top">
 
   <!-- ============ GIFS ============ -->
+  <div class="how-page">
   <h2 class="section-title">How it works</h2>
   <style>
   .steps-wrap {
@@ -640,6 +663,9 @@
     });
   })();
   </script>
+  </div>
+
+  <hr class="section-rule">
 
   <h2 class="section-title">STEER discovers isolated modes through global search algorithm</h2>
   <figure class="gif-figure">

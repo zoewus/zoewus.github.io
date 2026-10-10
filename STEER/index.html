@@ -27,6 +27,8 @@
 
   * { box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     margin: 0;
     padding: 0;
@@ -244,6 +246,8 @@
     font-size: 18px;
     line-height: 1.8;
   }
+  .band-abstract .abstract-link { color: inherit; }
+  .band-abstract .abstract-link:hover strong { text-decoration-color: #fff; }
   .band-abstract .lede strong {
     font-weight: 600;
     color: #fff;
@@ -396,6 +400,30 @@
     background: var(--blue);
     font-weight: 700;
   }
+
+  /* ---------- Continuous control (dark muted blue-purple band) ---------- */
+  .band-control {
+    background: #2c2b45;
+    color: #f3f1f8;
+    border-top: 1px solid rgba(30, 45, 70, 0.18);
+  }
+  .band-control .container { padding-top: 88px; }
+  .band-control h2.section-title { margin-top: 0; }
+  .band-control .section-intro { color: rgba(243, 241, 248, 0.82); }
+  .band-control h3.sub-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 48px 0 14px;
+  }
+  .band-control .maze-grid figure {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .band-control .maze-grid figure.maze-steer { border-color: var(--steer); }
+  .band-control .robo-grid h3 { color: #f3f1f8; }
+  .band-control .robo-grid h3.split-steer { color: #e08a7e; }
 
   /* ---------- Comparison ---------- */
   .compare {
@@ -554,7 +582,7 @@
     exchange particles according to an energy-based acceptance rate, propagating exploration to
     outputted samples. Across a diverse range of domains, from synthetic multimodal distributions to
     image generation, STEER achieves a <strong>better fidelity&ndash;diversity trade-off</strong> and improves success
-    rates on continuous-control tasks in both verifier-based and verifier-free settings. Our findings
+    rates on continuous-control tasks in <a class="abstract-link" href="#continuous-control"><strong>both verifier-based and verifier-free settings</strong></a>. Our findings
     suggest that effective diffusion tempering requires going beyond local updates to population-based
     global search that enhance fidelity and diversity.
   </p>
@@ -722,8 +750,15 @@
     </figure>
   </div>
 
+</div>
+
+<!-- ============ CONTINUOUS CONTROL ============ -->
+<section class="band-control" id="continuous-control">
+<div class="container">
+  <h2 class="section-title">STEER excels at continuous control tasks, with or without verifiers.</h2>
+
   <!-- ============ MAZE PLANNING ============ -->
-  <h2 class="section-title">STEER excels at long-range horizon planning when composed with verifiers</h2>
+  <h3 class="sub-title">STEER excels at long-range horizon planning when composed with verifiers</h3>
   <p class="section-intro">
     High-temperature replicas explore the space of possible trajectories more broadly, while swaps
     with low-temperature replicas let promising trajectories cool down into precise plans that
@@ -745,7 +780,7 @@
   </div>
 
   <!-- ============ ROBOMIMIC ============ -->
-  <h2 class="section-title">STEER improves imitation learning success without any verifier or reward signal</h2>
+  <h3 class="sub-title">STEER improves imitation learning success without any verifier or reward signal</h3>
   <div class="maze-grid robo-grid">
     <figure class="maze-steer">
       <h3 class="split-steer">STEER</h3>
@@ -758,6 +793,7 @@
   </div>
 
 </div>
+</section>
 
 <script>
   // Folder suffix in images/steer_web/ uses the temperature with "." -> "_" (e.g. steer_1_1 = λ 1.1).

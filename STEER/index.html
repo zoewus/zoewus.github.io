@@ -203,8 +203,7 @@
     margin: 0;
   }
 
-  .gif-figure img,
-  .gif-figure video {
+  .gif-figure img {
     width: 100%;
     height: auto;
     display: block;
@@ -361,21 +360,17 @@
     margin: -4px 0 22px;
   }
 
-  /* ---------- Side-by-side video headings ---------- */
-  .split-heads {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: 10px;
-  }
-
-  .split-heads h3 {
-    margin: 0;
+  /* ---------- Robomimic videos ---------- */
+  .robo-grid h3 {
+    margin: 2px 0 10px;
     font-size: 17px;
     text-align: center;
     color: var(--text);
   }
 
-  .split-heads h3.split-steer { color: var(--steer); }
+  .robo-grid h3.split-steer { color: var(--steer); }
+
+  .maze-grid.robo-grid video { aspect-ratio: auto; }
 
   /* ---------- Maze planning ---------- */
   .maze-grid {
@@ -650,13 +645,16 @@
 
   <!-- ============ ROBOMIMIC ============ -->
   <h2 class="section-title">STEER improves imitation learning success without any verifier or reward signal</h2>
-  <figure class="gif-figure">
-    <div class="split-heads">
+  <div class="maze-grid robo-grid">
+    <figure class="maze-steer">
       <h3 class="split-steer">STEER</h3>
+      <video src="../images/steer_robomimic/1_steer_seed50_ep13_success.mp4" autoplay muted loop playsinline aria-label="Robomimic rollout with STEER succeeding"></video>
+    </figure>
+    <figure>
       <h3>Baseline</h3>
-    </div>
-    <video src="../images/steer_robomimic/0_side_by_side_steer_left_baseline_right.mp4" autoplay muted loop playsinline aria-label="Robomimic rollouts: STEER on the left, baseline on the right"></video>
-  </figure>
+      <video src="../images/steer_robomimic/2_baseline_seed50_ep13_fail.mp4" autoplay muted loop playsinline aria-label="Robomimic rollout with the baseline failing on the same episode"></video>
+    </figure>
+  </div>
 
 </div>
 

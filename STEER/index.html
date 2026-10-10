@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --text: #1d1f26;
@@ -243,6 +243,14 @@
     color: rgba(245, 239, 232, 0.9);
     font-size: 18px;
     line-height: 1.8;
+  }
+  .band-abstract .lede strong {
+    font-weight: 600;
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(222, 120, 104, 0.85);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
 
   /* "How it works" fills one screen, then a rule before the next section. */
@@ -537,18 +545,18 @@
   <h2 class="section-title">Abstract</h2>
   <p class="lede">
     Diffusion models achieve strong generative performance across domains. However, achieving high
-    sample quality under hard physical and dynamical constraints, as in protein design and robotic
-    manipulation, remains difficult. Existing inference-time methods either require a costly or
-    unavailable verifier, or avoid a verifier at the cost of reduced diversity. To relieve this tension,
-    we introduce Score Tempering with Exchange between Exploratory Replicas (STEER), a verifier-free
-    inference-time method that replaces single-chain sharpening with global search using multiple
-    diffusion chains. During sampling, neighboring chains, each at different sharpening strengths,
-    exchange particles according to an energy-based acceptance rate, propagating exploration to
+    sample quality under <strong>hard physical and dynamical constraints</strong>, as in protein design and robotic
+    manipulation, remains difficult. Existing inference-time methods either require a <strong>costly or
+    unavailable verifier</strong>, or avoid a verifier at the cost of <strong>reduced diversity</strong>. To relieve this tension,
+    we introduce <strong>Score Tempering with Exchange between Exploratory Replicas (STEER)</strong>, a <strong>verifier-free</strong>
+    inference-time method that replaces single-chain sharpening with <strong>global search using multiple
+    diffusion chains</strong>. During sampling, neighboring chains, each at different sharpening strengths,
+    <strong>exchange particles</strong> according to an energy-based acceptance rate, propagating exploration to
     outputted samples. Across a diverse range of domains, from synthetic multimodal distributions to
-    image generation, STEER achieves a better fidelity&ndash;diversity trade-off and improves success
-    rates on continuous-control tasks in both verifier-based and verifier-free settings. Our findings
-    suggest that effective diffusion tempering requires going beyond local updates to population-based
-    global search that enhance fidelity and diversity.
+    image generation, STEER achieves a <strong>better fidelity&ndash;diversity trade-off</strong> and <strong>improves success
+    rates</strong> on continuous-control tasks in both verifier-based and verifier-free settings. Our findings
+    suggest that effective diffusion tempering requires going beyond local updates to <strong>population-based
+    global search</strong> that enhance fidelity and diversity.
   </p>
   </div>
 

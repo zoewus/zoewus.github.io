@@ -204,14 +204,22 @@
 
   /* Framework animation: near full-width on a white band, between hero and abstract. */
   .framework-band {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 4vw;
     background: #fff;
-    padding: 56px 4vw;
     border-bottom: 1px solid rgba(30, 45, 70, 0.18);
   }
   .framework-band img {
     display: block;
     width: 100%;
     height: auto;
+    max-height: 88vh;
+    max-height: 88svh;
+    object-fit: contain;
   }
 
   /* Abstract fills one screen, then a rule before "How it works". */

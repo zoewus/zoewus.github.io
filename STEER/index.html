@@ -202,6 +202,23 @@
   h2.section-title.centered { text-align: center; }
   h2.section-title.centered::after { left: 50%; transform: translateX(-50%); }
 
+  /* Abstract + overview figure fill one screen, then a rule before "How it works". */
+  .abstract-page {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 0 72px;
+  }
+  .abstract-page h2.section-title { margin-top: 40px; }
+
+  hr.section-rule {
+    border: 0;
+    border-top: 1px solid rgba(30, 45, 70, 0.18);
+    margin: 0;
+  }
+
   .lede {
     font-size: 17px;
     line-height: 1.7;
@@ -468,6 +485,7 @@
 <div class="band-blue">
 <div class="container top">
 
+  <div class="abstract-page">
   <h2 class="section-title">Abstract</h2>
   <p class="lede">
     Diffusion models achieve strong generative performance across domains. However, achieving high
@@ -489,6 +507,9 @@
   <figure class="gif-figure" style="margin-top: 48px;">
     <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
   </figure>
+  </div>
+
+  <hr class="section-rule">
 
   <!-- ============ GIFS ============ -->
   <h2 class="section-title">How it works</h2>

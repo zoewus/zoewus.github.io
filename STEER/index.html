@@ -202,7 +202,7 @@
   h2.section-title.centered { text-align: center; }
   h2.section-title.centered::after { left: 50%; transform: translateX(-50%); }
 
-  /* Abstract + overview figure fill one screen, then a rule before "How it works". */
+  /* Abstract fills one screen, then a rule before the overview animation. */
   .abstract-page {
     min-height: 100vh;
     min-height: 100svh;
@@ -211,7 +211,7 @@
     justify-content: center;
     padding: 24px 0 72px;
   }
-  .abstract-page h2.section-title { margin-top: 40px; }
+  .abstract-page h2.section-title { margin-top: 0; }
 
   hr.section-rule {
     border: 0;
@@ -502,14 +502,14 @@
     suggest that effective diffusion tempering requires going beyond local updates to population-based
     global search that enhance fidelity and diversity.
   </p>
-
-  <!-- ============ HERO ============ -->
-  <figure class="gif-figure" style="margin-top: 48px;">
-    <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
-  </figure>
   </div>
 
   <hr class="section-rule">
+
+  <!-- ============ HERO ============ -->
+  <figure class="gif-figure" style="margin-top: 72px;">
+    <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
+  </figure>
 
   <!-- ============ GIFS ============ -->
   <h2 class="section-title">How it works</h2>

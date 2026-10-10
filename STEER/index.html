@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --text: #1d1f26;
@@ -238,7 +238,12 @@
     padding: 72px 0;
   }
   .abstract-page h2.section-title { margin-top: 0; }
-  .band-abstract .lede { color: rgba(245, 239, 232, 0.9); font-size: 21px; line-height: 1.75; }
+  .band-abstract .lede {
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    color: rgba(245, 239, 232, 0.9);
+    font-size: 18px;
+    line-height: 1.8;
+  }
 
   /* "How it works" fills one screen, then a rule before the next section. */
   .how-page {

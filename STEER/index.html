@@ -202,7 +202,19 @@
   h2.section-title.centered { text-align: center; }
   h2.section-title.centered::after { left: 50%; transform: translateX(-50%); }
 
-  /* Abstract fills one screen, then a rule before the overview animation. */
+  /* Framework animation: near full-width on a white band, between hero and abstract. */
+  .framework-band {
+    background: #fff;
+    padding: 56px 4vw;
+    border-bottom: 1px solid rgba(30, 45, 70, 0.18);
+  }
+  .framework-band img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Abstract fills one screen, then a rule before "How it works". */
   .abstract-page {
     min-height: 100vh;
     min-height: 100svh;
@@ -482,6 +494,11 @@
   </div>
 </header>
 
+<!-- ============ FRAMEWORK ANIMATION ============ -->
+<section class="framework-band">
+  <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
+</section>
+
 <div class="band-blue">
 <div class="container top">
 
@@ -505,11 +522,6 @@
   </div>
 
   <hr class="section-rule">
-
-  <!-- ============ HERO ============ -->
-  <figure class="gif-figure" style="margin-top: 72px;">
-    <img src="../images/hero_animation.gif" alt="Animation: diffusion chains branch from a shared starting point and exchange samples as they move toward diverse low-temperature modes">
-  </figure>
 
   <!-- ============ GIFS ============ -->
   <h2 class="section-title">How it works</h2>

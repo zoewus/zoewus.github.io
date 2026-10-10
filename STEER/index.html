@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --text: #1d1f26;
@@ -53,103 +53,124 @@
   }
   .container.top { padding-top: 0; padding-bottom: 72px; }
 
-  .band-header {
-    background: #e3e8ef;
-    border-bottom: 1px solid rgba(30, 45, 70, 0.18);
+  /* ---------- Hero (full-bleed background media) ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: #f7f3ea;
+    background: #1b2433;
   }
-  .container.header { padding-bottom: 48px; }
-  .container.header .title-block { margin-bottom: 0; }
+
+  /* Placeholder media: swap the <img> for a <video autoplay muted loop playsinline> later. */
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-media img,
+  .hero-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(14, 20, 32, 0.82) 0%, rgba(14, 20, 32, 0.55) 55%, rgba(14, 20, 32, 0.3) 100%),
+      linear-gradient(0deg, rgba(14, 20, 32, 0.55) 0%, rgba(14, 20, 32, 0) 45%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 24px 72px;
+    display: flex;
+    flex-direction: column;
+  }
 
   .back {
+    align-self: flex-start;
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    padding: 5px 14px;
+    padding: 6px 16px;
     border-radius: 999px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    transition: transform 0.2s ease;
+    color: #f7f3ea;
+    border: 1.5px solid rgba(247, 243, 234, 0.85);
+    transition: transform 0.2s ease, background 0.2s ease;
   }
-  .back:hover { transform: translateX(-3px); }
+  .back:hover { color: #1b2433; background: #f7f3ea; transform: translateX(-3px); }
 
-  /* ---------- Title block ---------- */
   .title-block {
-    text-align: center;
-    margin: 32px 0 48px;
+    margin-top: auto;
+    padding-top: 80px;
+    max-width: 760px;
   }
 
   h1.project {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 168px;
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: 0.02em;
-    margin: 0 0 10px;
-    background: linear-gradient(90deg, var(--blue), var(--mauve), var(--red), var(--blue));
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 4s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    font-family: 'Anton', 'Helvetica Neue', Impact, sans-serif;
+    font-size: clamp(96px, 17vw, 220px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    margin: 0 0 40px;
+    color: #f7f3ea;
   }
 
   .subtitle {
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 500;
+    line-height: 1.35;
     margin: 0 0 18px;
   }
 
   .meta {
-    font-size: 15px;
-    color: var(--muted);
+    font-size: 16px;
+    color: rgba(247, 243, 234, 0.85);
   }
 
-  .meta .author { color: inherit; }
+  .meta .author { color: inherit; font-weight: 600; }
 
   .affiliation {
-    font-size: 15px;
-    color: var(--muted);
+    font-size: 16px;
+    color: rgba(247, 243, 234, 0.85);
     margin-top: 2px;
   }
 
   .resource-links {
     display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 22px;
+    gap: 12px;
+    margin-top: 28px;
   }
 
   .resource {
-    width: 84px;
-    height: 84px;
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
-    border-radius: 14px;
-    background: #fff;
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 20px -14px rgba(30, 45, 70, 0.45);
-    color: var(--text);
-    font-size: 13px;
+    gap: 8px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    font-size: 15px;
     font-weight: 600;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    color: #f7f3ea;
+    border: 1.5px solid rgba(247, 243, 234, 0.85);
+    transition: background 0.2s ease, color 0.2s ease;
   }
-  .resource:hover {
-    color: var(--red);
-    transform: translateY(-3px);
-    box-shadow: 0 14px 26px -14px rgba(30, 45, 70, 0.5);
-  }
+  .resource.primary { background: #f7f3ea; color: #1b2433; border-color: #f7f3ea; }
+  .resource:hover { background: #f7f3ea; color: var(--red); }
   .resource svg {
-    width: 28px;
-    height: 28px;
+    width: 18px;
+    height: 18px;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -412,41 +433,43 @@
     .compare { gap: 12px; }
     .maze-grid { grid-template-columns: 1fr; gap: 14px; }
     .compare figure { padding: 8px 8px 10px; }
-    h1.project { font-size: clamp(56px, 24vw, 96px); }
-    .subtitle { font-size: 19px; }
+    h1.project { font-size: clamp(80px, 28vw, 120px); margin-bottom: 28px; }
+    .subtitle { font-size: 20px; }
     .lede { padding: 18px; }
   }
 </style>
 </head>
 <body>
-<div class="band-header">
-<div class="container header">
-
-  <a class="back" href="../">&larr; Zoe Wu</a>
-
-  <!-- ============ TITLE ============ -->
-  <div class="title-block">
-    <h1 class="project">STEER</h1>
-    <p class="subtitle">Diverse Low-Temperature Diffusion Sampling<br>through Replica Exchange</p>
-    <div class="meta">
-      <span class="author">Zoe Wu</span>, Haldun Balim, Yilun Du &middot; Under Review
-    </div>
-    <div class="affiliation">Harvard University</div>
-    <div class="resource-links">
-      <!-- TODO: replace href="#" with the code and paper URLs -->
-      <a class="resource" href="#" aria-label="Code">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>
-        <span>Code</span>
-      </a>
-      <a class="resource" href="#" aria-label="Paper">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 12.5h7M8.5 16h7"/></svg>
-        <span>Paper</span>
-      </a>
-    </div>
+<header class="hero">
+  <div class="hero-media" aria-hidden="true">
+    <img src="../images/steer_vs_tsr_flow.gif" alt="">
   </div>
 
-</div>
-</div>
+  <div class="hero-inner">
+    <a class="back" href="../">&larr; Zoe Wu</a>
+
+    <!-- ============ TITLE ============ -->
+    <div class="title-block">
+      <h1 class="project">STEER</h1>
+      <p class="subtitle">Diverse Low-Temperature Diffusion Sampling<br>through Replica Exchange</p>
+      <div class="meta">
+        <span class="author">Zoe Wu</span>, Haldun Balim, Yilun Du &middot; Under Review
+      </div>
+      <div class="affiliation">Harvard University</div>
+      <div class="resource-links">
+        <!-- TODO: replace href="#" with the code and paper URLs -->
+        <a class="resource primary" href="#">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 12.5h7M8.5 16h7"/></svg>
+          Paper
+        </a>
+        <a class="resource" href="#">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>
+          Code
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
 
 <div class="band-blue">
 <div class="container top">
